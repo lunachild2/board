@@ -44,7 +44,7 @@ public class BoardServiceTest {
     void viewTest() {
         service.write(boardData);
 
-        Optional<BoardData> find = service.view("21");
+        Optional<BoardData> find = service.view(String.valueOf(boardData.getId()));
 
         assertThat(find.get().getPoster()).isEqualTo(boardData.getPoster());
     }
@@ -52,7 +52,8 @@ public class BoardServiceTest {
     @Test
     @DisplayName("게시글 수정 테스트")
     void editTest() {
-        boardData.setId(35);
+        long id = boardData.getId();
+        boardData.setId(id);
         boardData.setSubject("제목(수정)");
         boardData.setContent("내용(수정)");
         service.update(boardData);
@@ -61,8 +62,8 @@ public class BoardServiceTest {
     @Test
     @DisplayName("게시글 삭제 테스트")
     void deleteTest() {
-
-        service.delete("22");
+        String id = String.valueOf(boardData.getId());
+        service.delete(id);
     }
 
     @Test
