@@ -10,5 +10,6 @@ public interface BoardRepository {
 
     void update(BoardData data);
 
+    void delete(String id);
 
 }

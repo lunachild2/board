@@ -14,7 +14,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@DisplayName("게시글 저장 테스트")
+@DisplayName("게시판 테스트")
 public class BoardServiceTest {
 
     private BoardData boardData = null;
@@ -54,6 +54,13 @@ public class BoardServiceTest {
         boardData.setSubject("제목(수정)");
         boardData.setContent("내용(수정)");
         service.update(boardData);
+    }
+
+    @Test
+    @DisplayName("게시글 삭제 테스트")
+    void deleteTest() {
+
+        service.delete("22");
     }
 
 }

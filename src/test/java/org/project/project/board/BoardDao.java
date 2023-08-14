@@ -35,4 +35,10 @@ public class BoardDao implements BoardRepository {
                 data.getSubject(), data.getContent(), data.getId());
     }
 
+    /** 게시글 삭제 */
+    @Override
+    public void delete(String id) {
+        jdbcTemplate.update("DELETE FROM BOARD_DATA WHERE ID=?", id);
+    }
+
 }

@@ -28,4 +28,8 @@ public class BoardService {
         repository.update(data);
     }
 
+    public void delete(String id) {
+        repository.delete(id);
+    }
+
 }
