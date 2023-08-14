@@ -31,7 +31,7 @@ public class BoardDao implements BoardRepository {
     /** 게시글 수정 */
     @Override
     public void update(BoardData data) {
-        jdbcTemplate.update("UPDATE BOARD_DATA SET SUBJECT=?, CONTENT=? WHERE ID=?",
+        jdbcTemplate.update("UPDATE BOARD_DATA SET SUBJECT=?, CONTENT=?, MODDT=SYSDATE WHERE ID=?",
                 data.getSubject(), data.getContent(), data.getId());
     }
 
@@ -39,6 +39,12 @@ public class BoardDao implements BoardRepository {
     @Override
     public void delete(String id) {
         jdbcTemplate.update("DELETE FROM BOARD_DATA WHERE ID=?", id);
+    }
+
+    /** 게시글 전체 보기 */
+    @Override
+    public List<BoardData> viewList() {
+        return jdbcTemplate.query("SELECT * FROM BOARD_DATA", new BoardRowMapper());
     }
 
 }

@@ -9,6 +9,7 @@ import org.project.project.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -50,7 +51,7 @@ public class BoardServiceTest {
     @Test
     @DisplayName("게시글 수정 테스트")
     void editTest() {
-        boardData.setId(21);
+        boardData.setId(35);
         boardData.setSubject("제목(수정)");
         boardData.setContent("내용(수정)");
         service.update(boardData);
@@ -62,5 +63,19 @@ public class BoardServiceTest {
 
         service.delete("22");
     }
+
+    @Test
+    @DisplayName("게시글 전체 조회 테스트")
+    void viewListTest() {
+        service.write(boardData);
+        service.write(boardData);
+
+        List<BoardData> data = service.viewList();
+
+        assertThat(data.size()).isEqualTo(2);
+
+    }
+
+
 
 }

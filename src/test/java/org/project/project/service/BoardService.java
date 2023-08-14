@@ -7,6 +7,7 @@ import org.project.project.board.BoardRepository;
 import org.project.project.validators.BoardSaveValidator;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,10 @@ public class BoardService {
 
     public void delete(String id) {
         repository.delete(id);
+    }
+
+    public List<BoardData> viewList() {
+        return repository.viewList();
     }
 
 }
