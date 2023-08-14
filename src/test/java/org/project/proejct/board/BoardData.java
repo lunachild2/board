@@ -1,4 +1,4 @@
-package org.project.proejct.test.board;
+package org.project.proejct.board;
 
 import lombok.Builder;
 import lombok.Data;

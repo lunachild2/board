@@ -3,11 +3,13 @@ package org.project.proejct.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.project.proejct.test.board.BoardDao;
-import org.project.proejct.test.board.BoardData;
-import org.project.proejct.test.service.BoardService;
+import org.project.proejct.board.BoardDao;
+import org.project.proejct.board.BoardData;
+import org.project.proejct.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BoardServiceTest {
 
     private BoardData boardData = null;
-    @Autowired
-    private BoardService service;
 
     @Autowired
     private BoardDao boardDao;
@@ -32,9 +32,19 @@ public class BoardServiceTest {
     }
 
     @Test
-    @DisplayName("게시글 작성 테스트")
+    @DisplayName("게시글 조회 테스트")
     void addTest() {
         boardDao.write(boardData);
+    }
+
+    @Test
+    @DisplayName("게시글 보기 테스트")
+    void viewTest() {
+        boardDao.write(boardData);
+
+        Optional<BoardData> find = boardDao.view("21");
+
+        assertThat(find.get().getPoster()).isEqualTo(boardData.getPoster());
     }
 
 }

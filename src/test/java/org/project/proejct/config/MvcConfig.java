@@ -1,4 +1,4 @@
-package org.project.proejct.test.config;
+package org.project.proejct.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;

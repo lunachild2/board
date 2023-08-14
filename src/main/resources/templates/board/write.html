@@ -4,7 +4,7 @@
       layout:decorate="~{layouts/main}">
 
 <main layout:fragment="content">
-    <form method="POST" th:action="@{/board/save}" th:object="${BoardData}">
+    <form method="POST" th:action="@{/board/save}" th:object="${data}">
         <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
         <dl>
             <dt>작성자</dt>

@@ -1,4 +1,4 @@
-package org.project.proejct.test.validators;
+package org.project.proejct.validators;
 
 public class BoardValidationException extends RuntimeException {
 
