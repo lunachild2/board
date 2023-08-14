@@ -1,7 +1,9 @@
 package org.project.project.validators;
 
 import org.project.project.board.BoardData;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BoardSaveValidator implements Validator<BoardData>, RequiredValidator {
     @Override
     public void check(BoardData data) {

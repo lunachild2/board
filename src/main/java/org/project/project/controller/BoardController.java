@@ -7,6 +7,7 @@ import org.project.project.board.BoardData;
 import org.project.project.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,11 @@ public class BoardController {
     }
 
     @PostMapping("/save")
-    public String save(BoardData data) {
+    public String save(BoardData data, Errors errors) {
+
+        if(errors.hasErrors()) {
+            return "board/write";
+        }
 
         service.write(data);
 
@@ -75,5 +80,16 @@ public class BoardController {
         return "redirect:/board/{id}";
     }
 
+    /** 에러 새창 출력 */
+    @ExceptionHandler(RuntimeException.class)
+    public String errorHandler(RuntimeException e, Model model) {
+
+        String script = String.format("alert('%s');history.back();", e.getMessage());
+        model.addAttribute("script", script);
+
+        e.printStackTrace();
+
+        return "commons/execute_script";
+    }
 
 }

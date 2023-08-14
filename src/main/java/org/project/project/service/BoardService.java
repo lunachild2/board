@@ -3,6 +3,7 @@ package org.project.project.service;
 import lombok.RequiredArgsConstructor;
 import org.project.project.board.BoardData;
 import org.project.project.board.BoardRepository;
+import org.project.project.validators.BoardSaveValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,11 @@ public class BoardService {
 
     private final BoardRepository repository;
 
+    private final BoardSaveValidator validator;
+
     public void write(BoardData data) {
+
+        validator.check(data);
 
         repository.write(data);
     }
