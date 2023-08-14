@@ -19,6 +19,7 @@ public class BoardController {
 
     private final BoardService service;
 
+    /** 게시글 작성 */
     @GetMapping("/write")
     public String write(@ModelAttribute("data") BoardData data) {
 
@@ -33,6 +34,7 @@ public class BoardController {
         return "redirect:/board";
     }
 
+    /** 게시글 보기 */
     @GetMapping("/{id}")
     public String view(@PathVariable("id") String id, Model model) {
         Optional<BoardData> result = service.view(id);
@@ -42,11 +44,35 @@ public class BoardController {
         return "board/view";
     }
 
+    /** 게시글 전체 보기 */
     @GetMapping()
     public String viewList(Model model) {
         List<BoardData> viewList = service.viewList();
         model.addAttribute("viewList", viewList);
         return "board/viewList";
+    }
+
+    /** 게시글 삭제 */
+    @RequestMapping("/{id}/delete")
+    public String delete(@PathVariable String id) {
+        service.delete(id);
+        return "redirect:/board";
+    }
+
+    /** 게시글 수정 */
+    @GetMapping("/{id}/edit")
+    public String editForm(@PathVariable("id") String id, Model model) {
+        Optional<BoardData> result = service.view(id);
+        BoardData data = result.get();
+        model.addAttribute("data", data);
+
+        return "board/edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String edit(@PathVariable String id, @ModelAttribute("data") BoardData data) {
+        service.update(data);
+        return "redirect:/board/{id}";
     }
 
 
