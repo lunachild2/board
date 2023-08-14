@@ -1,4 +1,4 @@
-package org.project.proejct.scheduling;
+package org.project.proejct.test.scheduling;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

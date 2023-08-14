@@ -1,4 +1,4 @@
-package org.project.proejct.board;
+package org.project.proejct.test.board;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-@Builder
 public class BoardData {
 
     private long id;
