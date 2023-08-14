@@ -1,6 +1,6 @@
-package org.project.proejct.validators;
+package org.project.project.validators;
 
-import org.project.proejct.board.BoardData;
+import org.project.project.board.BoardData;
 
 public class BoardSaveValidator implements Validator<BoardData>, RequiredValidator {
     @Override

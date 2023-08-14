@@ -1,15 +1,14 @@
-package org.project.proejct.controller;
+package org.project.project.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.project.proejct.board.BoardDao;
-import org.project.proejct.board.BoardData;
-import org.project.proejct.service.BoardService;
+import org.project.project.board.BoardDao;
+import org.project.project.board.BoardData;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/board")
@@ -30,6 +29,15 @@ public class BoardController {
         boardDao.write(data);
 
         return "redirect:/board/view/";
+    }
+
+    @GetMapping("/{id}")
+    public String view(@PathVariable("id") String id, Model model) {
+        Optional<BoardData> result = boardDao.view(id);
+        BoardData data = result.get();
+        model.addAttribute("data", data);
+
+        return "board/view";
     }
 
 }

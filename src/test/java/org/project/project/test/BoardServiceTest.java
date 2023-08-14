@@ -1,11 +1,11 @@
-package org.project.proejct.test;
+package org.project.project.test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.project.proejct.board.BoardDao;
-import org.project.proejct.board.BoardData;
-import org.project.proejct.service.BoardService;
+import org.project.project.board.BoardDao;
+import org.project.project.board.BoardData;
+import org.project.project.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -20,7 +20,7 @@ public class BoardServiceTest {
     private BoardData boardData = null;
 
     @Autowired
-    private BoardDao boardDao;
+    private BoardService service;
 
 
     @BeforeEach
@@ -32,19 +32,28 @@ public class BoardServiceTest {
     }
 
     @Test
-    @DisplayName("게시글 조회 테스트")
+    @DisplayName("게시글 작성 테스트")
     void addTest() {
-        boardDao.write(boardData);
+        service.write(boardData);
     }
 
     @Test
     @DisplayName("게시글 보기 테스트")
     void viewTest() {
-        boardDao.write(boardData);
+        service.write(boardData);
 
-        Optional<BoardData> find = boardDao.view("21");
+        Optional<BoardData> find = service.view("21");
 
         assertThat(find.get().getPoster()).isEqualTo(boardData.getPoster());
+    }
+
+    @Test
+    @DisplayName("게시글 수정 테스트")
+    void editTest() {
+        boardData.setId(21);
+        boardData.setSubject("제목(수정)");
+        boardData.setContent("내용(수정)");
+        service.update(boardData);
     }
 
 }

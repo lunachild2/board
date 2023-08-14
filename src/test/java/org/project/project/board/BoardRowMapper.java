@@ -1,4 +1,4 @@
-package org.project.proejct.board;
+package org.project.project.board;
 
 import org.springframework.jdbc.core.RowMapper;
 
