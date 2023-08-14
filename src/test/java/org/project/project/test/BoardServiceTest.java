@@ -3,11 +3,11 @@ package org.project.project.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.project.project.board.BoardDao;
 import org.project.project.board.BoardData;
 import org.project.project.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @DisplayName("게시판 테스트")
+@Transactional
 public class BoardServiceTest {
 
     private BoardData boardData = null;

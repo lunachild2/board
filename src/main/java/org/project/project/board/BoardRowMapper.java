@@ -16,6 +16,7 @@ public class BoardRowMapper implements RowMapper<BoardData> {
         board.setContent(rs.getString("CONTENT"));
         board.setRegDt(rs.getTimestamp("REGDT").toLocalDateTime());
 
+
         return board;
     }
 }
